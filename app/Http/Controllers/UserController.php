@@ -9,6 +9,21 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     //
+    // public function search($search)
+    // {
+    //     if ($search == "")
+    //         return redirect(route("home"));
+    //     $users = User::where("name", "like", "%{$search}%")->orWhere("email", "like", "%{$search}%")->orWhere("phone", "like", "%{$search}%")->paginate(10);
+    //     return view("pages.user.search", compact("users"));
+    // }
+    public function search(Request $request)
+    {
+        $users = User::where("name", "LIKE", "%" . $request->search . "%")->orWhere("email", "LIKE", "%$request->search%")->orWhere("phone", "LIKE", "%$request->search%")->paginate(5);
+        if ($users) {
+            return view("welcome", compact("users"));
+        }
+        return view("welcome");
+    }
     public function store(Request $request)
     {
         $request->validate([

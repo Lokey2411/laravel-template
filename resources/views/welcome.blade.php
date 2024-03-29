@@ -19,6 +19,12 @@
         <div class="alert alert-success">{{ $message }}</div>
     @endif
     <button onclick="openAddModel()">Create</button>
+    <form action="{{ route('search') }}" method="post">
+        @csrf
+        <input type="text" name="search">
+        <button type="submit">Search</button>
+    </form>
+    {{-- <input type="text" onkeyup="search(this.value)"> --}}
     <table class="table">
         <thead>
             <tr>

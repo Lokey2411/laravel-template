@@ -10,3 +10,5 @@ Route::get('/', function () {
 })->name("home");
 
 Route::resource('users', UserController::class);
+Route::post("/search", [UserController::class, "search"])->name("search");
+Route::get("/search", [UserController::class, "search"])->name("search");
